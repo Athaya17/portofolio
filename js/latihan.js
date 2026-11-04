@@ -50,7 +50,7 @@ console.log("Selamat, kamu lulus KKM!");
 console.log("Tetap semangat, ikuti remedial ya.");
 }
 
-// 5. Menguji fungsi predikat dengan beberapa nilai
+//5. Menguji fungsi predikat dengan beberapa nilai
 console.log(`predikat(95) = ${predikat(95)}`); // A
 console.log(`predikat(90) = ${predikat(90)}`); // A, tepat di batas
 console.log(`predikat(84) = ${predikat(84)}`); // B
