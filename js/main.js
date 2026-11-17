@@ -150,3 +150,22 @@ if (daftarProyek && jumlahProyek) {
   pasangFilter("#filter-css", "CSS");
   pasangFilter("#filter-javascript", "JavaScript");
 }
+
+// Repositori GitHub
+const username = "USERNAME_GITHUB_KAMU";
+const alamatRepo = `https://api.github.com/users/Athaya17/repos`;
+const pilihan = "?sort=updated&per_page=6";
+
+const daftarRepo = document.querySelector("#daftar-repo");
+const statusRepo = document.querySelector("#status-repo");
+
+async function ambilRepo() {
+    const response = await fetch(alamatRepo + pilihan);
+    const repos = await response.json();
+
+    console.log(repos);
+}
+
+if (daftarRepo) {
+    ambilRepo();
+}
