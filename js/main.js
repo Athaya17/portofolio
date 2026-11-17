@@ -163,9 +163,18 @@ async function ambilRepo() {
     const response = await fetch(alamatRepo + pilihan);
     const repos = await response.json();
 
-    console.log(repos);
-}
+    repos.forEach((repo) => {
+        const item = document.createElement("li");
+        const tautan = document.createElement("a");
 
-if (daftarRepo) {
-    ambilRepo();
+        tautan.href = repo.html_url;
+        tautan.target = "_blank";
+        tautan.textContent = repo.name;
+
+        item.appendChild(tautan);
+        daftarRepo.appendChild(item);
+    });
+
+    statusRepo.textContent =
+        `${repos.length} repositori yang terakhir diperbarui:`;
 }
