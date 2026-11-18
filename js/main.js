@@ -151,8 +151,9 @@ if (daftarProyek && jumlahProyek) {
   pasangFilter("#filter-javascript", "JavaScript");
 }
 
-// Repositori GitHub
-const username = "USERNAME_GITHUB_KAMU";
+// 5. Repositori GitHub terbaru (halaman Proyek)
+
+const username = "Athaya17";
 const alamatRepo = `https://api.github.com/users/Athaya17/repos`;
 const pilihan = "?sort=updated&per_page=6";
 
@@ -160,21 +161,20 @@ const daftarRepo = document.querySelector("#daftar-repo");
 const statusRepo = document.querySelector("#status-repo");
 
 async function ambilRepo() {
-    const response = await fetch(alamatRepo + pilihan);
-    const repos = await response.json();
+  const response = await fetch(alamatRepo + pilihan);
+  const repos = await response.json();
 
-    repos.forEach((repo) => {
-        const item = document.createElement("li");
-        const tautan = document.createElement("a");
+  repos.forEach((repo) => {
+    const item = document.createElement("li");
+    const tautan = document.createElement("a");
 
-        tautan.href = repo.html_url;
-        tautan.target = "_blank";
-        tautan.textContent = repo.name;
+    tautan.href = repo.html_url;
+    tautan.target = "_blank";
+    tautan.textContent = repo.name;
 
-        item.appendChild(tautan);
-        daftarRepo.appendChild(item);
-    });
+    item.appendChild(tautan);
+    daftarRepo.appendChild(item);
+  });
 
-    statusRepo.textContent =
-        `${repos.length} repositori yang terakhir diperbarui:`;
+  statusRepo.textContent = `${repos.length} repositori yang terakhir diperbarui:`;
 }
