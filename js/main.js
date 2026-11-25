@@ -153,55 +153,49 @@ if (daftarProyek && jumlahProyek) {
   pasangFilter("#filter-javascript", "JavaScript");
 }
 
-// ==========================================
-// 5. GITHUB API DENGAN ASYNC/AWAIT
-// ==========================================
+// 5. Repositori GitHub terbaru (halaman Proyek)
+const username = "Athaya17";
+const alamatRepo = `https://api.github.com/users/${username}/repos`;
+const pilihan = "?sort=updated&per_page=6";
+
+const daftarRepo = document.querySelector("#daftar-repo");
+const statusRepo = document.querySelector("#status-repo");
 
 async function ambilRepo() {
-  const daftarRepo = document.querySelector("#daftar-repo-github");
-  const statusRepo = document.querySelector("#status-repo-github");
+    statusRepo.textContent = "Memuat...";
 
-  if (!daftarRepo || !statusRepo) return;
+    try {
+        const response = await fetch(alamatRepo + pilihan);
 
-  statusRepo.textContent = "Memuat repositori GitHub...";
-  daftarRepo.innerHTML = "";
+        if (!response.ok) {
+            throw new Error(`Status ${response.status}`);
+        }
 
-  try {
-    const response = await fetch(
-      "https://api.github.com/users/Athaya17/repos?sort=updated&per_page=100"
-    );
+        const repos = await response.json();
 
-    if (!response.ok) {
-      throw new Error("Gagal mengambil data repositori.");
+        repos.forEach((repo) => {
+            const item = document.createElement("li");
+            const tautan = document.createElement("a");
+
+            tautan.href = repo.html_url;
+            tautan.target = "_blank";
+            tautan.textContent = repo.name;
+
+            item.appendChild(tautan);
+            daftarRepo.appendChild(item);
+        });
+
+        statusRepo.textContent =
+            `${repos.length} repositori yang terakhir diperbarui:`;
+
+    } catch (error) {
+        statusRepo.textContent =
+            "Maaf, daftar repositori gagal dimuat. Periksa username atau coba lagi nanti.";
+
+        console.error(error);
     }
-
-    const repositori = await response.json();
-
-    if (repositori.length === 0) {
-      statusRepo.textContent = "Belum ada repositori publik.";
-      return;
-    }
-
-    daftarRepo.innerHTML = repositori.map((repo) => `
-      <article class="kartu">
-        <span class="label">${repo.language || "Repository"}</span>
-        <h3>${repo.name}</h3>
-        <p>${repo.description || "Belum ada deskripsi."}</p>
-        <p>Bintang: ${repo.stargazers_count}</p>
-        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-          Lihat repositori di GitHub
-        </a>
-      </article>
-    `).join("");
-
-    statusRepo.textContent =
-      `Berhasil memuat ${repositori.length} repositori GitHub.`;
-
-  } catch (error) {
-    console.error(error);
-    statusRepo.textContent =
-      "Repositori gagal dimuat. Periksa koneksi internet.";
-  }
 }
 
-ambilRepo();
+if (daftarRepo) {
+    ambilRepo();
+}
