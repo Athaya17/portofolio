@@ -38,11 +38,23 @@ if (daftarSkill) {
 const tombolTema = document.querySelector("#tombol-tema");
 
 if (tombolTema) {
+  if (localStorage.getItem("tema") === "gelap") {
+    document.body.classList.add("gelap");
+    tombolTema.textContent = "Mode Terang";
+    tombolTema.setAttribute("aria-label", "Mode Terang: ubah tema halaman");
+  }
+
   tombolTema.addEventListener("click", () => {
     document.body.classList.toggle("gelap");
-    tombolTema.textContent = document.body.classList.contains("gelap")
+    const temaGelap = document.body.classList.contains("gelap");
+    localStorage.setItem("tema", temaGelap ? "gelap" : "terang");
+    tombolTema.textContent = temaGelap
       ? "Mode Terang"
       : "Mode Gelap";
+    tombolTema.setAttribute(
+      "aria-label",
+      temaGelap ? "Mode Terang: ubah tema halaman" : "Mode Gelap: ubah tema halaman"
+    );
   });
 }
 
@@ -106,11 +118,17 @@ const daftarProyek = document.querySelector("#daftar-proyek");
 const jumlahProyek = document.querySelector("#jumlah-proyek");
 
 function buatKartu(item) {
+  const ukuranGambar = {
+    "tampilanprofil.png": [1548, 877],
+    "kalkulator.png": [1887, 877],
+    "proyekkalkulator.png": [1890, 873],
+  };
+  const ukuran = ukuranGambar[item.gambar] || [640, 420];
   return `
     <article class="kartu">
       <span class="label">${item.kategori}</span>
       <h3>${item.judul}</h3>
-      <img src="${item.gambar}" alt="${item.alt}" width="280">
+      <img src="${item.gambar}" alt="${item.alt}" width="${ukuran[0]}" height="${ukuran[1]}" loading="lazy" decoding="async">
       <p>${item.deskripsi}</p>
     </article>`;
 }
@@ -179,6 +197,7 @@ async function ambilRepo() {
 
             tautan.href = repo.html_url;
             tautan.target = "_blank";
+            tautan.rel = "noopener noreferrer";
             tautan.textContent = repo.name;
 
             item.appendChild(tautan);
