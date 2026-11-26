@@ -1,5 +1,7 @@
-/* Gaya portofolio Andi Pratama
-   Palet: #1D3557 (utama), #E63946 (aksen), #F1FAEE (latar)
+/* Gaya portofolio Athaya Zeyhan
+   Tema: biru gelap modern dengan aksen biru listrik dan cyan
+   Mode terang : #0A1F44 (navy), #2563EB (biru aksen), #38BDF8 (cyan), #EDF3FF (latar)
+   Mode gelap  : #07122A (latar), #0E1E3F (kartu), #7DD3FC (tautan), #38BDF8 (cyan)
    Huruf: Poppins (judul), Inter (isi)
    Tata letak: mobile first, titik ubah 768px (tablet) dan 1024px (laptop) */
 
@@ -19,13 +21,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  color: #333333;
-  background-color: #F1FAEE;
+  color: #1B2A45;
+  background-color: #EDF3FF;
+  background-image: linear-gradient(180deg, #DDE9FF 0%, #EDF3FF 320px);
+  background-repeat: no-repeat;
 }
 
 h1, h2, h3 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #1D3557;
+  color: #0A1F44;
   line-height: 1.3;
 }
 
@@ -38,7 +42,7 @@ p, ul, ol {
 }
 
 a {
-  color: #C52A3A;
+  color: #1D4ED8;
 }
 
 /* 3. Wadah, header, dan menu */
@@ -49,9 +53,12 @@ a {
 }
 
 header {
-  background-color: #1D3557;
+  background-color: #0A1F44;
+  background-image: linear-gradient(135deg, #0A1F44 0%, #12337A 100%);
   color: #FFFFFF;
   padding: 1rem 0;
+  border-bottom: 3px solid #38BDF8;
+  box-shadow: 0 4px 16px rgba(10, 31, 68, 0.25);
 }
 
 .brand {
@@ -89,6 +96,11 @@ nav a {
   color: #FFFFFF;
   font-weight: 600;
   text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.16);
 }
 
 a:focus-visible,
@@ -97,8 +109,15 @@ summary:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #FDBE00;
+  outline: 3px solid #2563EB;
   outline-offset: 3px;
+}
+
+header a:focus-visible,
+header summary:focus-visible,
+.hero a:focus-visible,
+footer a:focus-visible {
+  outline-color: #7DD3FC;
 }
 
 /* Tantangan: menu ponsel buka-tutup dengan details */
@@ -108,7 +127,7 @@ textarea:focus-visible {
 
 .menu-ponsel summary {
   padding: 0.5rem 0.75rem;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #7DD3FC;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
@@ -129,36 +148,70 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  padding: 1rem 0 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem 1.25rem;
+  border-radius: 20px;
+  background-color: #0A1F44;
+  background-image: linear-gradient(135deg, #0A1F44 0%, #1E40AF 100%);
+  box-shadow: 0 12px 32px rgba(30, 64, 175, 0.30);
+  color: #DCE8FF;
   text-align: center;
 }
 
 .hero img {
-  border: 4px solid #E63946;
+  border: 4px solid #38BDF8;
   border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.25);
 }
 
 .hero h1 {
+  color: #FFFFFF;
   font-size: 2rem;
+}
+
+.hero a {
+  color: #7DD3FC;
 }
 
 .tombol {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  background-color: #C52A3A;
+  border-radius: 999px;
+  background-color: #2563EB;
   color: #FFFFFF;
   font-weight: 600;
   text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.tombol:hover {
+  background-color: #1D4ED8;
+  transform: translateY(-2px);
+}
+
+.hero .tombol {
+  background-color: #38BDF8;
+  color: #082042;
+}
+
+.hero .tombol:hover {
+  background-color: #7DD3FC;
 }
 
 .kartu {
   background-color: #FFFFFF;
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #D6E2FA;
+  border-top: 4px solid #2563EB;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kartu:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.22);
 }
 
 .filter {
@@ -169,13 +222,17 @@ main {
 }
 
 .tombol-filter.aktif {
-  background-color: #1D3557;
+  background-color: #0A1F44;
 }
 
 .label {
   display: inline-block;
   margin-bottom: 0.5rem;
-  color: #C52A3A;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background-color: #DBEAFE;
+  color: #1E40AF;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
@@ -193,7 +250,7 @@ main {
 
 article img {
   border-radius: 8px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #D6E2FA;
 }
 
 /* 5. Tabel */
@@ -208,14 +265,19 @@ caption {
 }
 
 th, td {
-  border: 1px solid #CCCCCC;
+  border: 1px solid #C3D3F0;
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
 
 th {
-  background-color: #1D3557;
+  background-color: #0A1F44;
+  background-image: linear-gradient(135deg, #0A1F44 0%, #1E40AF 100%);
   color: #FFFFFF;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #EEF4FF;
 }
 
 /* 6. Form */
@@ -228,7 +290,7 @@ input, select, textarea {
   max-width: 22rem;
   padding: 0.6rem;
   margin-top: 0.25rem;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #B4C6EA;
   border-radius: 6px;
   font-family: inherit;
   font-size: 1rem;
@@ -237,21 +299,29 @@ input, select, textarea {
 button {
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
-  background-color: #C52A3A;
+  border-radius: 999px;
+  background-color: #2563EB;
   color: #FFFFFF;
   font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #1D4ED8;
+  transform: translateY(-2px);
 }
 
 /* 7. Footer */
 footer {
-  background-color: #1D3557;
-  color: #F1FAEE;
+  background-color: #0A1F44;
+  background-image: linear-gradient(135deg, #0A1F44 0%, #12337A 100%);
+  color: #DCE8FF;
   text-align: center;
   padding: 1.5rem;
+  border-top: 3px solid #38BDF8;
 }
 
 footer p {
@@ -274,7 +344,7 @@ footer a {
 
   .hero {
     flex-direction: row;
-    padding: 2rem 0 3rem;
+    padding: 2.5rem 2.5rem;
     text-align: left;
   }
 
@@ -291,6 +361,7 @@ footer a {
 
   .hero {
     gap: 3rem;
+    padding: 3rem 3.5rem;
   }
 
   .hero h1 {
@@ -298,18 +369,134 @@ footer a {
   }
 }
 
+/* 10. Mode gelap (biru gelap) */
 body.gelap {
-  color: #f5f5f5;
-  background-color: #18173e;
+  color: #D5E2F7;
+  background-color: #07122A;
+  background-image: linear-gradient(180deg, #0C1B3D 0%, #07122A 320px);
 }
 
 body.gelap h1,
 body.gelap h2,
 body.gelap h3 {
-  color: #f5f5f5;
+  color: #F1F6FF;
+}
+
+body.gelap a {
+  color: #7DD3FC;
+}
+
+body.gelap header,
+body.gelap footer {
+  background-color: #050D1F;
+  background-image: linear-gradient(135deg, #050D1F 0%, #0B1B3D 100%);
+}
+
+body.gelap header {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+body.gelap .brand,
+body.gelap nav a,
+body.gelap footer a {
+  color: #FFFFFF;
+}
+
+body.gelap footer {
+  color: #B8CCEA;
+}
+
+body.gelap nav a:hover {
+  background-color: rgba(125, 211, 252, 0.18);
+}
+
+body.gelap .hero {
+  background-color: #0B1B3D;
+  background-image: linear-gradient(135deg, #0B1B3D 0%, #1B3A8A 100%);
+  border: 1px solid #2B4C99;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+body.gelap .hero h1 {
+  color: #FFFFFF;
+}
+
+body.gelap .hero a {
+  color: #7DD3FC;
+}
+
+body.gelap .tombol,
+body.gelap button {
+  background-color: #2563EB;
+  color: #FFFFFF;
+}
+
+body.gelap .tombol:hover,
+body.gelap button:hover {
+  background-color: #3B82F6;
+}
+
+body.gelap .hero .tombol {
+  background-color: #38BDF8;
+  color: #082042;
+}
+
+body.gelap .hero .tombol:hover {
+  background-color: #7DD3FC;
+}
+
+body.gelap .tombol-filter.aktif {
+  background-color: #38BDF8;
+  color: #082042;
+}
+
+body.gelap .label {
+  background-color: #1E3A8A;
+  color: #BFDBFE;
 }
 
 body.gelap .kartu {
-  background-color: #26272c;
-  border-color: #27226b;
+  background-color: #0E1E3F;
+  border-color: #1E3A72;
+  border-top-color: #38BDF8;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.40);
+}
+
+body.gelap .kartu:hover {
+  box-shadow: 0 12px 28px rgba(56, 189, 248, 0.20);
+}
+
+body.gelap article img {
+  border-color: #1E3A72;
+}
+
+body.gelap th,
+body.gelap td {
+  border-color: #2B4572;
+}
+
+body.gelap th {
+  background-color: #1B3A8A;
+  background-image: none;
+}
+
+body.gelap tbody tr:nth-child(even) {
+  background-color: #0F2145;
+}
+
+body.gelap input,
+body.gelap select,
+body.gelap textarea {
+  background-color: #0B1A38;
+  color: #E6EEFA;
+  border-color: #2B4572;
+}
+
+body.gelap a:focus-visible,
+body.gelap button:focus-visible,
+body.gelap summary:focus-visible,
+body.gelap input:focus-visible,
+body.gelap select:focus-visible,
+body.gelap textarea:focus-visible {
+  outline-color: #7DD3FC;
 }
